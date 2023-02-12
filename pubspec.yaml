@@ -1,7 +1,7 @@
 name: flutter_cam
-description: A new Flutter project.
+description: A simple and clean user interface camera package.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Nagoorkani2393/flutter_cam.git
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
