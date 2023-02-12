@@ -1,7 +1,4 @@
-library flutter_cam;
+library powered_cam;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export '/src/pages/flutter_cam_page.dart';
+export '/src/repo/flutter_cam_initialize.dart';

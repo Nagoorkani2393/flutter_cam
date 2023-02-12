@@ -11,6 +11,22 @@ dependencies:
   flutter:
     sdk: flutter
 
+# external packages
+  # camera is a package that provides access to the device cameras
+  camera: ^0.10.2+1
+  # video_player is a package that provides access to the device video player
+  video_player: ^2.5.1
+  # video_thumbnail is a package that extract thumbnail from a video
+  video_thumbnail: ^0.5.3
+  # image_picker is a package that pick images from the image library
+  file_picker: ^5.2.5
+  # flutter_animate is a package that provides a simple way to animate widgets
+  flutter_animate: ^3.0.0
+  # image_cropper is a package to crop images
+  image_cropper: ^3.0.1
+  # shred_preferences is a package to store data on the device
+  shared_preferences: ^2.0.17
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
