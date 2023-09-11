@@ -15,11 +15,12 @@ class CamController {
       return;
     }
     _cameraDescription = description;
-    _cameraController = CameraController(description, ResolutionPreset.high);
+    _cameraController =
+        CameraController(description, ResolutionPreset.ultraHigh);
   }
 
-  void dispose() {
+  Future<void> dispose() async {
+    await _cameraController?.dispose();
     _cameraController = null;
-    _cameraController?.dispose();
   }
 }

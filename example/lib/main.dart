@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
         body: FlutterCam(
           cameraDescriptions: flutterCamDescription,
           // callback triggered when upload button tapped
-          onUploadTap: (files) {},
+          onUploadTap: (files, previews) {},
           //callback triggered when back button tapped
-          onBackTap: () {},
+          onBackTap: () {}, title: '',
         ),
       ),
     );

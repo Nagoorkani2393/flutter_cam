@@ -7,8 +7,10 @@ class CameraBase extends StatefulWidget {
   const CameraBase({
     super.key,
     required this.cameraController,
+    required this.previewSize,
   });
   final CameraController cameraController;
+  final Size previewSize;
 
   @override
   State<CameraBase> createState() => _CameraBaseState();
@@ -23,6 +25,8 @@ class _CameraBaseState extends State<CameraBase> {
 
   void _initialize() {
     widget.cameraController.initialize().then((_) {
+      widget.cameraController.value = widget.cameraController.value
+          .copyWith(previewSize: widget.previewSize);
       setState(() {});
     });
   }

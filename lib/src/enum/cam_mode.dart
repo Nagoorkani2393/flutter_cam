@@ -1,0 +1,4 @@
+enum CamMode {
+  image,
+  video,
+}

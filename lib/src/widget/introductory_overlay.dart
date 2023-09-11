@@ -72,7 +72,7 @@ class IntroductoryOverlay {
                         ),
                         const SizedBox(height: 5),
                         const Text(
-                          "Tap to image\nTap and hold to video",
+                          "Tap to image / video",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
@@ -85,7 +85,7 @@ class IntroductoryOverlay {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Tap to pick image\nfrom Gallery",
+                          "Pick from Gallery",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
@@ -103,7 +103,7 @@ class IntroductoryOverlay {
                     )),
                 Positioned(
                     right: 10,
-                    top: 100,
+                    top: 120,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -114,7 +114,7 @@ class IntroductoryOverlay {
                         ),
                         const SizedBox(height: 5),
                         const Text(
-                          "Tap to flip camera",
+                          "Flip camera",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
@@ -122,6 +122,26 @@ class IntroductoryOverlay {
                     )),
                 Positioned(
                   right: 60,
+                  top: 100,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.touch_app_outlined,
+                        color: Colors.white.withOpacity(0.7),
+                        size: 42,
+                      ),
+                      const SizedBox(height: 5),
+                      const Text(
+                        "Auto flash",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: 80,
                   top: 80,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,7 +163,7 @@ class IntroductoryOverlay {
                         transform: Matrix4.identity()
                           ..translate(-center.dx / 4),
                         child: const Text(
-                          "Tap to auto flash",
+                          "Video / Image Mode",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),

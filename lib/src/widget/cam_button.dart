@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-enum CamMode { image, video }
+import '../enum/cam_mode.dart';
 
 class CamButton extends StatefulWidget {
   const CamButton({
     Key? key,
     this.onTap,
-    this.onLongPress,
-    this.onLongPressEnd,
+    required this.camModeNotifier,
+    required this.isVideoRecording,
   }) : super(key: key);
   final VoidCallback? onTap;
-  final VoidCallback? onLongPress;
-  final Function(LongPressEndDetails details)? onLongPressEnd;
+  final ValueNotifier<CamMode> camModeNotifier;
+  final ValueNotifier<bool> isVideoRecording;
 
   @override
   State<CamButton> createState() => _CamButtonState();
@@ -22,7 +22,6 @@ class _CamButtonState extends State<CamButton>
   late final AnimationController _animationController;
   late final Animation<double> _scaleAnimation;
   static const _animDuration = Duration(milliseconds: 250);
-  CamMode _mode = CamMode.image;
 
   @override
   void initState() {
@@ -50,20 +49,6 @@ class _CamButtonState extends State<CamButton>
         );
         widget.onTap?.call();
       },
-      onLongPress: () {
-        _animationController.forward();
-        setState(() {
-          _mode = CamMode.video;
-        });
-        widget.onLongPress?.call();
-      },
-      onLongPressEnd: (details) {
-        _animationController.reverse();
-        setState(() {
-          _mode = CamMode.image;
-        });
-        widget.onLongPressEnd?.call(details);
-      },
       child: AnimatedBuilder(
         animation: _scaleAnimation,
         builder: (context, child) =>
@@ -74,10 +59,40 @@ class _CamButtonState extends State<CamButton>
           height: 64.0,
           decoration: BoxDecoration(
               shape: BoxShape.circle, color: Colors.white.withOpacity(0.2)),
-          child: Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _mode == CamMode.image ? Colors.white : Colors.red),
+          child: ValueListenableBuilder<CamMode>(
+            valueListenable: widget.camModeNotifier,
+            builder: (context, value, child) {
+              if (value == CamMode.video) {
+                return ValueListenableBuilder<bool>(
+                  valueListenable: widget.isVideoRecording,
+                  builder: (context, isRecording, child) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      reverseDuration: const Duration(milliseconds: 300),
+                      child: isRecording
+                          ? Container(
+                              width: 32,
+                              height: 32,
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(4)),
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.red),
+                            )
+                          : Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.red),
+                            ),
+                    );
+                  },
+                );
+              }
+
+              return Container(
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+              );
+            },
           ),
         ),
       ),
